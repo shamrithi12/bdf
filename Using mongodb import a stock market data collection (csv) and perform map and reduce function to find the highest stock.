@@ -1,0 +1,13 @@
+C:\>cd mongodb/bin 
+C:\mongodb\bin>mongoimport --d test -c sales --type csv --file sales.csv --headerline 
+C:\mongodb\bin>mongo.exe 
+> db.sales.find()) 
+1) Gender Count Using Mapreduce: 
+>db.sales.mapReduce(function(){emit(this.Gender,1);},function(key, values){return 
+Array.sum(values)}, {out: "genderCOUNT" }).find() 
+2) Count Of Users In Particular City Using Mapreduce: 
+>db.sales.mapReduce(function(){emit(this.City,1);},function(key,values){return 
+Array.sum(values)},{out:"userCOUNT" }).find() 
+3) Users From Yangon Using Mapreduce: 
+>db.sales.mapReduce(function(){emit(this.Id,1);},function(key,values){return 
+Array.sum(values)}, {query:{"City": "Yangon" },out: "YangonCOUNT" }).find() 
