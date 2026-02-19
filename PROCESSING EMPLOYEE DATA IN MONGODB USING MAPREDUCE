@@ -1,0 +1,21 @@
+> use employees1 
+> db.employees1.insert({eid:510, name:"sree", dept:"marketing", sal:25000}) 
+> db.employees1.insert({eid:511, name:"ramya", dept:"production", sal:30000}) 
+> db.employees1.insert({eid:525, name:"mano", dept:"HR", sal:50000}) 
+> db.employees1.insert({eid:531, name:"karthick", dept:"marketing", sal:45000}) 
+> db.employees1.insert({eid:546, name:"kavi", dept:"production", sal:40000}) 
+> db.employees1.insert({eid:500, name:"shiva", dept:"sales", sal:42000}) 
+> db.employees1.insert({eid:530, name:"rajan", dept:"testing", sal:30000}) 
+> db.employees1.insert({eid:580, name:"suji", dept:"HR", sal:31000}) 
+> db.employees1.find() 
+MAPREDUCE FUNCTIONS: 
+> db.employees1.mapReduce( 
+      function() { emit(this.dept, this.sal); }, 
+      function(key, values) { return Array.avg(values); }, 
+      { out: "Avg_sal" } 
+  ) 
+> db.employees1.mapReduce( 
+      function() { emit(this.dept, 1); }, 
+      function(key, values) { return Array.sum(values); }, 
+      { out: "emp_count" } 
+  )
