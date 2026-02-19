@@ -1,0 +1,13 @@
+#Program 1
+n=5
+p=0.25
+x=rbinom(100,n,p)
+hist(x,probability=TRUE)
+xvals=0:n;points(xvals,dbinom(xvals,n,p),type="h",lwd=3)
+
+#Program 2
+n=16
+p=0.25
+x=rbinom(100,n,p)
+hist(x,probability=TRUE)
+xvals=0:n;points(xvals,dbinom(xvals,n,p),type="h",lwd=3)
