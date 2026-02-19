@@ -1,0 +1,56 @@
+> use customers1 
+> db.createCollection("Bankdetails", { capped: true, size: 1024, max: 50 }) 
+> db.Bankdetails.insert({ custid:"A501", Acctype:"SB",    Branch:"Coimbatore", Balance:20000 }) 
+> db.Bankdetails.insert({ custid:"A502", Acctype:"SB",    Branch:"Namakkal",   Balance:30000 }) 
+> db.Bankdetails.insert({ custid:"A511", Acctype:"SB",    Branch:"Coimbatore", Balance:25000 }) 
+> db.Bankdetails.insert({ custid:"B401", Acctype:"RD",    Branch:"Namakkal",   Balance:45000 }) 
+> db.Bankdetails.insert({ custid:"B411", Acctype:"RD",    Branch:"Coimbatore", Balance:35000 }) 
+> db.Bankdetails.insert({ custid:"B425", Acctype:"RD",    Branch:"Namakkal",   Balance:42000 }) 
+ 
+> db.Bankdetails.insert({ custid:"C351", Acctype:"joint", Branch:"Coimbatore", Balance:43000 }) 
+> db.Bankdetails.insert({ custid:"C321", Acctype:"joint", Branch:"Namakkal",   Balance:37000 }) 
+> db.Bankdetails.insert({ custid:"C331", Acctype:"joint", Branch:"Coimbatore", Balance:29000 }) 
+> db.Bankdetails.find() 
+MAPREDUCE FUNCTIONS: 
+ACCOUNT TYPE DETAILS: 
+> db.Bankdetails.mapReduce( 
+      function () { emit(this.Acctype, 1); }, 
+      function (key, values) { return Array.sum(values); }, 
+      { out: "Acc_type" } 
+  ) 
+COIMBATORE BRANCH DETAILS: 
+> db.Bankdetails.mapReduce( 
+      function () { emit(this.Acctype, 1); }, 
+      function (key, values) { return Array.sum(values); }, 
+      { query: { Branch: "Coimbatore" }, out: "Bran_Coimbatore" } 
+  ) 
+NAMAKKAL BRANCH DETAILS: 
+> db.Bankdetails.mapReduce( 
+      function () { emit(this.Acctype, 1); }, 
+      function (key, values) { return Array.sum(values); }, 
+      { query: { Branch: "Namakkal" }, out: "Bran_Namakkal" } 
+  ) 
+RD ACCOUNT & BRANCH DETAILS: 
+> db.Bankdetails.mapReduce( 
+      function () { emit(this.custid, this.Branch); }, 
+      function (key, values) { return values[0]; }, 
+      { query: { Acctype: "RD" }, out: "RD_Accounts" } 
+  ) 
+SB ACCOUNT & BRANCH DETAILS: 
+> db.Bankdetails.mapReduce( 
+      function () { emit(this.custid, this.Branch); }, 
+      function (key, values) { return values[0]; }, 
+      { query: { Acctype: "SB" }, out: "SB_Accounts" } 
+  ) 
+JOINT ACCOUNT & BRANCH DETALS: 
+> db.Bankdetails.mapReduce( 
+      function () { emit(this.custid, this.Branch); }, 
+      function (key, values) { return values[0]; }, 
+      { query: { Acctype: "joint" }, out: "Joint_Accounts" } 
+  ) 
+BALANCE OF EACH CUSTOMER: 
+> db.Bankdetails.mapReduce( 
+      function () { emit(this.custid, this.Balance); }, 
+      function (key, values) { return Array.sum(values); }, 
+      { out: "Customer_Balance" } 
+  ) 
