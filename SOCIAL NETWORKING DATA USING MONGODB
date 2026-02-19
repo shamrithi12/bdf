@@ -1,0 +1,32 @@
+> use customers 
+> db.createCollection("Social_Networking") 
+>db.Social_Networking.insert({user_id:101,name:"abhishek",age:22,gender:"male",hobby:" 
+dance",country:"india"}) 
+>db.Social_Networking.insert({user_id:102,name:"akshay",age:25,gender:"male",hobby:"si 
+nging",country:"india"}) 
+>db.Social_Networking.insert({user_id:103,name:"felina",age:20,gender:"female",hobby:"p 
+ainting",country:"india"}) 
+>db.Social_Networking.insert({user_id:104,name:"carrie",age:25,gender:"female",hobby:"p 
+ainting",country: "newyork"}) 
+>db.Social_Networking.insert({user_id:105,name:"nick",age:29,gender: "male",hobby: "danc 
+e",country: "newyork"}) 
+>db.Social_Networking.insert({user_id:106,name:"sentibee",age:30,gender:"female",hobby: 
+"singing",country:"newyork"})
+>db.Social_Networking.insert({user_id:107,name:"john",age:27,gender: "male",hobby:"singi 
+ng",country:"newyork"}) 
+>db.Social_Networking.insert({user_id:108,name:"pradeep",age:30,gender:"male",hobby:"s 
+inging",country:"india"}) 
+>db.Social_Networking.insert({user_id:109,name:"kanika",age:26,gender: "female",hobby:" 
+painting",country:"india"}) 
+>db.Social_Networking.insert({user_id:110,name:"hardin",age:29,gender: "male",hobby: "pa 
+inting",country:"newyork"}) 
+> db.Social_Networking.find() 
+
+MAPREDUCE PROGRAM: 
+GENDER COUNT: 
+>db.Social_Networking.mapReduce(function(){emit(this.gender,1);},function(key,values){retu 
+rn Array.sum(values)}, {out:"GenderCount"}).find() 
+>db.Social_Networking.mapReduce(function(){emit(this.hobby,1);},function(key,values){retu 
+rn Array.sum(values)},{out:"GenderCount"}).find() 
+>db.Social_Networking.mapReduce(function(){emit(this.user_id,this.name);},function(key,val 
+ues){return Array.sum(values)}, {query:{"country":"india"},out:"indianUsers"}).find() 
