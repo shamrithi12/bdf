@@ -1,0 +1,7 @@
+PROGRAM:
+
+Colnames <- ("affected", "unaffected")
+rownames <- c("A", "B")
+Social Group <- matrix(c(43,157,81,119), nrow=2, byrow=T)
+Social Group
+chisq.test(Social Group)
