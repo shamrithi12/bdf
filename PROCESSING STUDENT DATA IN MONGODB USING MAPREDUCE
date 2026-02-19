@@ -1,0 +1,31 @@
+> use students1 
+> db.createCollection("marks") 
+> db.marks.insert({ sid:1011, name:"ramya", sem:1, percentage:92 }) 
+> db.marks.insert({ sid:1011, name:"ramya", sem:2, percentage:89 }) 
+> db.marks.insert({ sid:1011, name:"ramya", sem:3, percentage:90 }) 
+ 
+> db.marks.insert({ sid:1012, name:"aishu", sem:1, percentage:95 }) 
+> db.marks.insert({ sid:1012, name:"aishu", sem:2, percentage:91 }) 
+> db.marks.insert({ sid:1012, name:"aishu", sem:3, percentage:88 }) 
+> db.marks.insert({ sid:1013, name:"thara", sem:1, percentage:87 }) 
+> db.marks.insert({ sid:1013, name:"thara", sem:2, percentage:85 }) 
+> db.marks.insert({ sid:1013, name:"thara", sem:3, percentage:90 }) 
+> db.marks.insert({ sid:1014, name:"kavi", sem:1, percentage:86 }) 
+> db.marks.insert({ sid:1014, name:"kavi", sem:2, percentage:90 }) 
+> db.marks.insert({ sid:1014, name:"kavi", sem:3, percentage:92 }) 
+> db.marks.insert({ sid:1015, name:"bindu", sem:1, percentage:85 }) 
+> db.marks.insert({ sid:1015, name:"bindu", sem:2, percentage:89 }) 
+> db.marks.insert({ sid:1015, name:"bindu", sem:3, percentage:93 }) 
+> db.marks.find() 
+MAPREDUCE FUNCTIONS: 
+> db.marks.mapReduce( 
+      function () { emit(this.sid, this.percentage); }, 
+      function (key, values) { return Array.sum(values); }, 
+      { out: "Total_Percentage" } 
+  ) 
+> db.marks.mapReduce( 
+      function () { emit(this.sid, this.percentage); }, 
+      function (key, values) { return Array.avg(values); }, 
+      { out: "Total_Average" } 
+Find()function
+  ) 
