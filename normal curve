@@ -1,0 +1,13 @@
+#Program 1
+rnorm(1,12.5,50)
+rnorm(1,mean = 12.5,sd=1.36)
+x<-rnorm(12.5)
+hist(x,probability=TRUE,col=gray(.9),main="Normal")
+curve(dnorm(x),add=T)
+
+
+rnorm(1,6.4,15)
+rnorm(1,mean = 6.4,sd=2.7276)
+x<-rnorm(6.4)
+hist(x,probability=TRUE,col=gray(.9),main="Normal")
+curve(dnorm(x),add=T)
