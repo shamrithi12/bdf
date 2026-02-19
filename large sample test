@@ -1,0 +1,8 @@
+PROGRAM:
+
+x = 9900
+mu = 10000
+s = 120
+n = 30
+z = (x - mu) / (s / sqrt(n))
+z
