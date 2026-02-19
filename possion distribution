@@ -1,0 +1,10 @@
+program 1
+
+ppois(16, lambda=12)
+ppois(16, lambda=12, lower = FALSE)
+plot(0:20, dpois(0:20, lambda=12), type='h')
+
+#Program 2
+ppois(100, lambda=5)
+ppois(100, lambda=5, lower = FALSE)
+plot(0:20, dpois(0:20, lambda=5), type='h')
