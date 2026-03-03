@@ -1,0 +1,5 @@
+cd
+cd hbase 2.4.17 
+bin/start-hbase.sh 
+jps
+bin/hbase shell
