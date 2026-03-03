@@ -1,0 +1,21 @@
+SOURCE CODE:
+Create the directory:
+bin/hadoop dfs -mkdir /mydir2
+To list the Hadoop files:
+bin/hadoop dfs -ls
+To list sub directories:
+bin/hadoop dfs -lsr
+To view the file:
+bin/Hadoop dfs -put/home/grg/datagen_10.txt/data10
+To view the file in browser:
+Localhost:50070/
+Copy the file from local to hdfs:
+bin/hadoop dfs -copyFromLocal/home/grg/datagen_10.txt /data10
+Copy the file from hdfs to local:
+bin/hadoop dfs-copyToLocal /data10 /home/grg/datagen_10.txt
+To copy file from the source to the destination
+bin/hadoop dfs -cp/data10/datagen_10.txt
+To move file:
+bin/hadoop dfs -mv/data10
+To remove file:
+bin/hadoop dfs-rm/data10
