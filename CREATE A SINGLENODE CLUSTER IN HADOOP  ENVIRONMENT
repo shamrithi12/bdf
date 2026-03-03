@@ -1,0 +1,38 @@
+INPUT:
+HADOOP INSTALLATION
+TO EXTRACT THE TAR FILE: tar -zxvf hadoop-2.9.1.tar.gz TO CHECK THE JAVA PATH:
+echo $JAVA HOME
+TO SET THE JAVA HOME PATH: export JAVA_HOME=/home/username/jdk1.8.0_45
+CORE-SITE.XML
+<property>
+<name>fs.default.name</name>
+<value>hdfs://localhost:50000</value>
+</property>
+YARN-SITE.XML
+<property>
+<name>yarn.nodemanager.aux-services</name>
+<value>mapreduce shuffle</value>
+</property>
+<property>
+HADOOP-ENV.SH
+exportJAVA_HOME=/home/username/jdk1.8.0_45 
+MAPRED-ENV.SH
+export JAVA_HOME=/home/username/jdk1.8.0_4
+YARN-ENV.SH
+export JAVA_HOME=/home/username/jdk1.8.0_45
+SLAVES
+Localhost
+STARTING DAEMONS
+cd hadoop-2.9.1
+TO FORMAT HADOOP NAMENODE
+bin/hadoop namenode -format
+TO START DAEMONS
+sbin/start-all.sh (or)
+sbin/hadoop-daemon.sh start namenode
+sbin/hadoop-daemon.sh start datanode 
+sbin/hadoop-daemon.sh start
+secondarynamenode sbin/hadoop-daemon.sh 
+start resourcemanager sbin/hadoop-
+daemon.sh start nodemanager
+TO LIST THE DAEMONS: jps
+TO STOP THE DEAMONS: sbin/stop-all.sh
