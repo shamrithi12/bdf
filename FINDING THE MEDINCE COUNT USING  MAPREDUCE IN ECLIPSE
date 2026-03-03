@@ -1,0 +1,5 @@
+cd Hadoop -2.9.1
+bin/Hadoop dfs-put/home/grg/data_10.txt/data10 
+bin/Hadoop dfs -ls
+bin/Hadoop jar/home/grg/mr/data10/mrout 
+bin/Hadoop dfs -cat /mrout /part -r-00000
